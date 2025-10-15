@@ -9,7 +9,7 @@
 - ✅ **实时审查**: 通过 Webhook 实时响应 PR 事件
 - ✅ **多维度分析**: 代码质量、安全性、性能、可读性
 - ✅ **智能建议**: 提供具体的改进建议和代码示例
-- ✅ **易于部署**: 支持 Docker 和 Kubernetes 部署
+- ✅ **易于部署**: 支持本地二进制部署，跨平台兼容
 
 ## 快速开始
 
@@ -31,14 +31,16 @@
 
 ### 2. 本地部署 (推荐)
 
-#### 方式 1: 自动安装 (Linux/macOS)
+#### 🚀 方式 1: 一键自动安装
+
+##### Linux / macOS
 
 ```bash
 # 克隆项目
 git clone https://github.com/iasiv5/gitea-openai-review-bot.git
 cd gitea-openai-review-bot
 
-# 自动安装
+# 一键安装
 chmod +x scripts/install.sh
 ./scripts/install.sh
 
@@ -49,7 +51,26 @@ vim ~/.local/share/gitea-openai-review-bot/.env
 gitea-openai-review-bot
 ```
 
-#### 方式 2: 手动安装
+##### Windows
+
+```cmd
+REM 克隆项目
+git clone https://github.com/iasiv5/gitea-openai-review-bot.git
+cd gitea-openai-review-bot
+
+REM 一键安装
+scripts\windows-install.bat
+
+REM 配置环境变量（脚本会自动打开记事本）
+REM 编辑弹出的配置文件并保存
+
+REM 启动服务（双击桌面快捷方式或运行以下命令）
+scripts\windows-start.bat start
+```
+
+#### 🔧 方式 2: 手动安装
+
+##### Linux / macOS
 
 ```bash
 # 1. 构建应用
@@ -65,7 +86,23 @@ chmod +x scripts/start.sh
 ./scripts/start.sh start
 ```
 
-#### 方式 3: 直接运行
+##### Windows
+
+```cmd
+REM 1. 构建应用
+scripts\build.bat
+
+REM 2. 配置环境变量
+copy .env.example .env
+notepad .env
+
+REM 3. 启动服务
+scripts\windows-start.bat start
+```
+
+#### 💻 方式 3: 直接运行（开发者）
+
+##### Linux / macOS
 
 ```bash
 # 1. 安装依赖
@@ -81,7 +118,26 @@ cp .env.example .env
 ./gitea-review-bot
 ```
 
+##### Windows
+
+```cmd
+REM 1. 安装依赖
+go mod download
+
+REM 2. 构建应用
+go build -o gitea-review-bot.exe cmd/main.go
+
+REM 3. 配置环境变量
+copy .env.example .env
+notepad .env
+
+REM 4. 运行应用
+gitea-review-bot.exe
+```
+
 ### 3. 服务管理
+
+#### Linux / macOS
 
 ```bash
 # 启动服务
@@ -100,17 +156,61 @@ cp .env.example .env
 ./scripts/start.sh logs
 ```
 
+#### Windows
+
+```cmd
+REM 启动服务
+scripts\windows-start.bat start
+
+REM 停止服务
+scripts\windows-start.bat stop
+
+REM 重启服务
+scripts\windows-start.bat restart
+
+REM 查看状态
+scripts\windows-start.bat status
+
+REM 查看日志
+scripts\windows-start.bat logs
+
+REM 或者双击桌面快捷方式启动服务
+```
+
 ### 4. 系统服务 (可选)
 
 如果你希望服务开机自启，可以创建系统服务：
 
+#### Linux (systemd)
+
 ```bash
-# Linux (systemd)
+# 启用并启动服务
 sudo systemctl enable gitea-review-bot
 sudo systemctl start gitea-review-bot
 
 # 查看服务状态
 sudo systemctl status gitea-review-bot
+
+# 查看日志
+sudo journalctl -u gitea-review-bot -f
+```
+
+#### macOS (launchd)
+
+```bash
+# 加载并启动服务
+launchctl load ~/Library/LaunchAgents/com.yourorg.gitea-review-bot.plist
+launchctl start com.yourorg.gitea-review-bot
+```
+
+#### Windows (Windows Service)
+
+```cmd
+REM 使用 NSSM 创建 Windows 服务
+nssm install "Gitea Review Bot" "C:\path\to\gitea-openai-review-bot.exe"
+
+REM 启动服务
+nssm start "Gitea Review Bot"
 ```
 
 ### 5. 配置 Gitea Webhook
@@ -185,12 +285,24 @@ curl http://localhost:8080/health
 
 ### 查看日志
 
-```bash
-# Docker 环境
-docker-compose logs -f gitea-openai-review-bot
+#### Linux / macOS
 
-# 二进制部署
-tail -f logs/review-bot.log
+```bash
+# 使用管理脚本
+./scripts/start.sh logs
+
+# 或者直接查看日志文件
+tail -f logs/app.log
+```
+
+#### Windows
+
+```cmd
+# 使用管理脚本
+scripts\windows-start.bat logs
+
+# 或者直接查看日志文件
+type logs\app.log
 ```
 
 ### 监控指标
