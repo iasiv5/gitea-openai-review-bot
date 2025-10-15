@@ -1,4 +1,4 @@
-module github.com/your-org/gitea-openai-review-bot
+module github.com/iasiv5/gitea-openai-review-bot
 
 go 1.21
 

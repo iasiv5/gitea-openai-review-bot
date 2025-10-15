@@ -35,7 +35,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-org/gitea-openai-review-bot.git
+git clone https://github.com/iasiv5/gitea-openai-review-bot.git
 cd gitea-openai-review-bot
 
 # 自动安装
@@ -265,8 +265,19 @@ go run cmd/main.go
 
 MIT License
 
+## 项目链接
+
+- 🏠 **GitHub 仓库**: https://github.com/iasiv5/gitea-openai-review-bot
+- 📖 **在线文档**: https://github.com/iasiv5/gitea-openai-review-bot/blob/main/docs/local-setup-guide.md
+- 🐛 **问题反馈**: https://github.com/iasiv5/gitea-openai-review-bot/issues
+- 💬 **讨论交流**: https://github.com/iasiv5/gitea-openai-review-bot/discussions
+
+## Star 历史
+
+如果这个项目对你有帮助，请给它一个 ⭐ Star！
+
 ## 支持
 
 - 📧 Email: support@example.com
-- 💬 GitHub Issues: [创建问题](https://github.com/your-org/gitea-openai-review-bot/issues)
-- 📖 文档: [详细文档](https://docs.example.com)
+- 💬 GitHub Issues: [创建问题](https://github.com/iasiv5/gitea-openai-review-bot/issues)
+- 📖 文档: [详细文档](https://github.com/iasiv5/gitea-openai-review-bot/blob/main/docs/local-setup-guide.md)

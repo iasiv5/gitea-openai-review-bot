@@ -14,7 +14,7 @@
 
 ```bash
 # 1. 克隆项目
-git clone https://github.com/your-org/gitea-openai-review-bot.git
+git clone https://github.com/iasiv5/gitea-openai-review-bot.git
 cd gitea-openai-review-bot
 
 # 2. 自动安装
@@ -32,7 +32,7 @@ gitea-openai-review-bot
 
 ```cmd
 REM 1. 克隆项目
-git clone https://github.com/your-org/gitea-openai-review-bot.git
+git clone https://github.com/iasiv5/gitea-openai-review-bot.git
 cd gitea-openai-review-bot
 
 REM 2. 自动安装
@@ -459,5 +459,5 @@ del "%USERPROFILE%\Desktop\Gitea Review Bot.lnk"
 ## 技术支持
 
 - **文档**: [项目 README](../README.md)
-- **问题反馈**: [GitHub Issues](https://github.com/your-org/gitea-openai-review-bot/issues)
-- **社区讨论**: [GitHub Discussions](https://github.com/your-org/gitea-openai-review-bot/discussions)
+- **问题反馈**: [GitHub Issues](https://github.com/iasiv5/gitea-openai-review-bot/issues)
+- **社区讨论**: [GitHub Discussions](https://github.com/iasiv5/gitea-openai-review-bot/discussions)
