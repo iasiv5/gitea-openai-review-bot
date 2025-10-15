@@ -1,0 +1,71 @@
+# Gitea OpenAI Review Bot 配置文件
+server:
+  port: "8080"
+  host: "0.0.0.0"
+
+gitea:
+  url: "https://your-gitea.com"
+  bot_token: "your-gitea-bot-token"
+  webhook_secret: "your-webhook-secret"
+
+openai:
+  api_key: "your-openai-api-key"
+  model: "gpt-4"
+  max_tokens: 2000
+  temperature: 0.3
+
+review:
+  enabled_file_types:
+    - ".go"
+    - ".py"
+    - ".js"
+    - ".ts"
+    - ".java"
+    - ".cpp"
+    - ".c"
+    - ".rs"
+    - ".php"
+    - ".rb"
+    - ".cs"
+  max_file_size: 1048576    # 1MB
+  max_diff_size: 102400     # 100KB
+
+# 高级配置
+advanced:
+  # 是否启用缓存
+  enable_cache: true
+  # 缓存过期时间（小时）
+  cache_ttl: 24
+  # 并发审查数量
+  max_concurrent_reviews: 5
+  # 重试次数
+  max_retries: 3
+
+# 通知配置
+notifications:
+  # 是否创建总览评论
+  create_summary_comment: true
+  # 是否创建行级评论
+  create_line_comments: true
+  # 评论模板
+  comment_template: |
+    ## 🤖 AI 代码审查报告
+
+    ### 📊 整体评分
+    - **质量评分**: {{.Overall.Score}}/10
+    - **代码质量**: {{.Overall.Quality}}
+    - **可读性**: {{.Overall.Readability}}
+    - **复杂度**: {{.Overall.Complexity}}
+
+    ### 📝 审查总结
+    {{.Summary}}
+
+    ### 🔍 发现的问题
+    {{range .Issues}}
+    - **第{{.Line}}行**: {{.Message}} ({{.Severity}})
+    {{end}}
+
+    ### 💡 改进建议
+    {{range .Suggestions}}
+    - **第{{.Line}}行**: {{.Description}}
+    {{end}}

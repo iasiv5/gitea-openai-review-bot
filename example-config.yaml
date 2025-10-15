@@ -1,0 +1,64 @@
+# PR Review Bot 配置文件
+server:
+  port: "8080"
+  host: "0.0.0.0"
+
+gitea:
+  url: "https://your-gitea.com"
+  bot_token: "your-bot-token"
+  webhook_secret: "your-webhook-secret"
+
+database:
+  url: "postgres://user:password@localhost:5432/pr_review_bot"
+  max_connections: 10
+
+ai:
+  enabled: true
+  provider: "openai"  # openai, claude, 或 local
+  api_key: "your-ai-api-key"
+  model: "gpt-4"
+  max_tokens: 1000
+  temperature: 0.3
+
+rules:
+  # 代码质量检查
+  quality:
+    enabled: true
+    max_function_length: 50
+    max_complexity: 10
+    require_tests: true
+
+  # 安全检查
+  security:
+    enabled: true
+    check_sql_injection: true
+    check_xss: true
+    check_hardcoded_secrets: true
+
+  # 代码风格
+  style:
+    enabled: true
+    check_naming: true
+    check_formatting: true
+    max_line_length: 120
+
+# 白名单配置
+whitelist:
+  repositories:
+    - "owner/repo1"
+    - "owner/repo2"
+  users:
+    - "admin"
+    - "trusted-user"
+
+# 通知配置
+notifications:
+  enabled: true
+  slack_webhook: ""
+  email:
+    enabled: false
+    smtp_server: ""
+    smtp_port: 587
+    username: ""
+    password: ""
+    from: ""
